@@ -1,0 +1,3 @@
+/data/housing_*.tsv
+/__pycache__
+*/.DS_Store
