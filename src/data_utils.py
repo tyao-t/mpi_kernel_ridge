@@ -50,6 +50,7 @@ def rebuild(x):
 
 ocean_avg = None
 def process_ocean(x, y, comm):
+    default = {0: 1, 1: -1, 2: 1.1, 3: 1.2, 4: 1.5}
     def get_ocean_y_avg(x, y):
         ocean_y_sum = [0] * 5
         ocean_count = [0] * 5
@@ -62,9 +63,11 @@ def process_ocean(x, y, comm):
         global_ocean_count = np.zeros_like(ocean_count)
         comm.Allreduce(ocean_y_sum, global_ocean_y_sum, op=MPI.SUM)
         comm.Allreduce(ocean_count, global_ocean_count, op=MPI.SUM)
+        if i in range(5): 
+            if global_ocean_count[i] == 0: return default
         return global_ocean_y_sum / global_ocean_count
 
-    # ocean_avg = {0: 1, 1: -1, 2: 1.1, 3: 1.2, 4: 1.5}
     global ocean_avg
+    # ocean_avg = default
     if ocean_avg is None: ocean_avg = get_ocean_y_avg(x, y).ravel()
     for i in range(x.shape[0]): x[i][8] = ocean_avg[int(x[i][8]+0.9)]
