@@ -1,4 +1,4 @@
 /data/housing_*.tsv
-/__pycache__
-*/.DS_Store
+**/__pycache__
+**/.DS_Store
 **/.ipynb_checkpoints/

@@ -17,8 +17,8 @@ fi
 
 n_proc=$1
 
-source scripts/clean.sh &&
-python scripts/split_train_test.py &&
-source scripts/split_data.sh $1 &&
-mpirun -n $1 python src/kernel_ridge.py &&
+source script/clean.sh &&
+python script/split_train_test.py &&
+source script/split_data.sh $1 &&
+mpirun -n $1 python src/kernel_ridge_cv.py &&
 echo ""
