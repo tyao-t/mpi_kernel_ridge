@@ -26,7 +26,7 @@ y_train = scaler.fit_transform(y_train)
 
 alpha = 1.0
 sigma = 1.0  
-gamma = 1 / (2 * sigma**2)  # 计算 gamma
+gamma = 1 / (2 * sigma**2) 
 
 # K = rbf_kernel(x_train, x_train, gamma=gamma)
 
@@ -45,7 +45,7 @@ from sklearn.kernel_ridge import KernelRidge
 model = KernelRidge(alpha=alpha, kernel='rbf', gamma=gamma)
 model.fit(x_train, y_train)
 print(model.dual_coef_.shape)
-print("KernelRidge 的 dual_coef_:\n", model.dual_coef_[:10])
+print("KernelRidge's dual_coef_:\n", model.dual_coef_[:10])
 
 exit()
 
